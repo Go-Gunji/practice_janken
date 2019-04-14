@@ -1,3 +1,4 @@
+function janken () {
 // 変数定義
 // じゃんけんの番号を設定
 const GU    = 1;
@@ -11,6 +12,7 @@ if (!hum) {
 } else {
     let com = getComHand();
     alert(getResultMsg(com, hum));
+    return getResult(com, hum);
 }
 
 
@@ -58,4 +60,21 @@ function getResult (com, hum) {
 // 最終的な結果のメッセージ
 function getResultMsg(com, hum) {
     return getResult(com, hum) + "コンピュータの出した手は「" + getHandName(com) + "」でした。";
+}
+}
+
+let win = 0;
+let isLose = false;
+while (!isLose) {
+    let result = janken();
+    if (result === "結果はあいこでした。") {
+        continue;
+    }
+    if (result === "勝ちました。") {
+        win++;
+        alert("ただいま「" + win + "」勝です。");
+        continue;
+    }
+    alert("連勝はストップです。記録は「" + win + "」勝でした。");
+    isLose = true;
 }
